@@ -1,0 +1,44 @@
+<html>
+<head>
+<title> MQTT Subscribe Message</title>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+<script>
+
+function sub_mqtt_msg() {
+// Send an MQTT message
+  var mqtt_broker = document.getElementById("mqtt_broker").value;
+  var mqtt_port = Number(document.getElementById("mqtt_port").value);
+
+  client = new Paho.MQTT.Client(mqtt_broker, mqtt_port,"");
+  client.onMessageArrived = onMessageArrived;
+  client.connect({onSuccess:onConnect});
+  document.getElementById("submsg").innerHTML = "Trying to connect...";
+}
+
+function onConnect() {
+  document.getElementById("submsg").innerHTML = "New connection made...";
+  var mqtt_topic = document.getElementById("mqtt_topic").value;  
+  client.subscribe(mqtt_topic);
+  document.getElementById("submsg").innerHTML = "Subscribing to topic: " + mqtt_topic + " ...";
+}
+function onMessageArrived(message) {
+  var result = message.destinationName + " : " + message.payloadString + "";
+  document.getElementById("submsg").innerHTML = result;
+}
+
+</script>
+<body>
+<h1>MQTT Subscribe Test Page</h1>
+
+broker: <input type="text" id="mqtt_broker" value="test.mosquitto.org"><br><br>
+port: <input type="text" id="mqtt_port" value="8080"><br><br>
+topic: <input type="text" id="mqtt_topic" value="my_IoT_value1"><br><br>
+
+<button onclick="sub_mqtt_msg()">Subscript to MQTT</button>
+<hr>
+<h2>Subscribed Messages:</h2>
+<div id=submsg></div>
+</body>
+
+</html>

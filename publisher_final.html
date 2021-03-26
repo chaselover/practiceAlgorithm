@@ -1,0 +1,23 @@
+<html>
+<head>
+<title> MQTT Publish Message</title>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+<script src='./function.js'></script>
+<body>
+  <h1>MQTT Publish Test Page</h1>
+
+  Broker Name: <input type="text" id="mqtt_broker" value="test.mosquitto.org"><br><br>
+  port: <input type="text" id="mqtt_port" value="8080"><br><br>
+  mqtt_topic: <input type="text" id="mqtt_topic" value="my_IoT_value1"><br><br>
+  Message: <input type="text" id="mqtt_msg" value="test message"><br><br>
+
+  <button onclick="setInterval(send_mqtt_msg, 1000)">Publish MQTT Message</button>
+
+  <script>
+  connect_mqtt();
+  </script>
+</body>
+<hr>
+<div id="pubmsg"></div>
+</html>

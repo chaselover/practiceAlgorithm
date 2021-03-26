@@ -1,0 +1,46 @@
+<html>
+<head>
+<title> MQTT Publish Message</title>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+
+<script>
+  // Define some MQTT variables
+  var mqtt_server = "";
+  var mqtt_port = "";
+  var mqtt_destname = "";
+
+  function send_mqtt_msg() {
+  // Send an MQTT message
+    mqtt_server = document.getElementById("mqtt_server").value;
+    mqtt_port = Number(document.getElementById("mqtt_port").value);
+  
+
+    client = new Paho.MQTT.Client(mqtt_server, mqtt_port,"");
+    client.connect({onSuccess:onConnect});
+    document.getElementById("pubmsg").innerHTML = "Trying to connect...";
+  }
+  function onConnect() {
+    document.getElementById("pubmsg").innerHTML = "New connection made...";
+    var mqtt_destname = document.getElementById("mqtt_destname").value;
+    var mqtt_msg = document.getElementById("mqtt_msg").value;   
+    message = new Paho.MQTT.Message(mqtt_msg);
+    message.destinationName = mqtt_destname;
+    client.send(message);
+    document.getElementById("pubmsg").innerHTML = "topic:" + mqtt_destname + " = " + mqtt_msg + " ...sent";
+  }  
+  // called when a message arrives
+</script>
+<body>
+  <h1>MQTT Publish Test Page</h1>
+
+  Server Name: <input type="text" id="mqtt_server" value="test.mosquitto.org"><br><br>
+  Websocket: <input type="text" id="mqtt_port" value="8080"><br><br>
+  DestinationName: <input type="text" id="mqtt_destname" value="my_IoT_value1"><br><br>
+  Message: <input type="text" id="mqtt_msg" value="test message"><br><br>
+
+  <button onclick="send_mqtt_msg()">Publish MQTT Message</button>
+  </body>
+  <hr>
+  <div id=pubmsg></div>
+</html>
