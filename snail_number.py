@@ -1,22 +1,19 @@
 T = int(input())
 
 
-def coloringGraph():
-    N,E,M = map(int,input().split())
-
-    G =[[0 for _ in range(N)]for _ in range(N)]
-
-    for _ in range(E):
-        x,y = map(int,input().split())
-        G[x-1][y-1] = 1
-        G[y-1][x-1] = 1
-
-    for i in range(N):
-        if sum(G[i]) > M:
-            return 0
-
-    return 1
-
 
 for testcase in range(T):
-    print("#{} {}".format(testcase+1, coloringGraph()))
+    date = input()
+    year = int(date[:4])
+    month = int(date[4:6])
+    day = int(date[6:])
+    if (month == 1 or 3 or 5 or 7 or 8 or 10 or 12) and month !=0 and 0 < day <= 31:
+        print("#{} {}/{}/{}".format(testcase+1, year, month, day))
+    elif month == 2 and month !=0 and 0 < day <= 28:
+        print("#{} {}/{}/{}".format(testcase+1, year, month, day))
+    elif (month == 4 or 6 or 9 or 11) and month !=0 and 0 < day <= 30:
+        print("#{} {}/{}/{}".format(testcase+1, year, month, day))
+    else:
+        print("#{} -1")
+
+    
