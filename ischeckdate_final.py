@@ -1,9 +1,7 @@
-import base64
+N = int(input())
+numbers = list(map(int,input().split()))
+numbers = sorted(numbers)
+M = int((N-1)/2)
+answer = numbers[M]
 
-tc=int(input())
- 
-for i in range(1,tc+1):
-    base64str=input()
-    base64_bytes = base64.b64decode(base64str)
-    string = base64_bytes.decode('ascii')
-    print("{} {}".format(i,string))
+print(answer)
