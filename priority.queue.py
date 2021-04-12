@@ -1,4 +1,5 @@
 import heapq
+import sys
 
 
 N = int(input())
@@ -6,12 +7,12 @@ cards =[]
 times = 0
 
 for _ in range(N):
-    heapq.heappush(cards,int(input())
+    heapq.heappush(cards,int(sys.stdin.readline()))
 
 
-if(N==1)
+if len(cardes) == 1:
     print(0)
-    else:
+else:
     while len(cards) > 1:
         card1 = heapq.heappop(cards)
         card2 = heapq.heappop(cards)
