@@ -1,35 +1,20 @@
-import collections, sys
+import sys,collections
 input = sys.stdin.readline
 
 
+N,K = map(int,input().split())
+nums = [i for i in range(1,N+1)]
+answer = []
 
-N = int(input())
-queue = collections.deque()
+for i in range(N*K):
+    if i%K==K-1:
+        answer.append(nums[i%N])
+        del nums[i%N]
+    if not nums:
+        break
 
-for order in range(N):
-    p = list(input().split())
-    if p[0] == 'push':
-        queue.append(p[1])
-    elif p[0] == 'pop':
-        if queue:
-            print(queue.popleft())
-        else:
-            print(-1)
-    elif p[0] == 'size':
-        print(len(queue))
-    elif p[0] == 'empty':
-        if queue:
-            print(0)
-        else:
-            print(1)
-    elif p[0] =='front':
-        if queue:
-            print(queue[0])
-        else:
-            print(-1)
-    elif p[0] =='back':
-        if queue:
-            print(queue[-1])
-        else:
-            print(-1)
+
+answer = ', '.join(list(map(str,answer)))
+print(f"<{answer}>")
+
 
