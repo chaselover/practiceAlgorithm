@@ -1,30 +1,36 @@
 import sys
 input = sys.stdin.readline
 
-N = int(input())
-
-arr = list(map(int,input().split()))
-arr2 = []
-max = 0
-answer = ''
-while arr:
-    a = arr.pop()
-    if arr2:
-        for s in arr2[::-1]:
-            if a<s:
-                answer = str(s) + ' ' + answer
-                arr2.append(a)
-                break
-            if a>max:
-                answer = '-1 ' + answer
-                arr2.append(a)
-                max = a
-                break
-    else:
-        answer = '-1 ' + answer
-        arr2.append(a)
-        max = a
-
-print(answer)
 
 
+A = int(input())
+An = list(map(int,input().split()))
+
+stack = []
+result = [-1]*A
+
+stack.append(0)
+i = 1
+
+while stack and i < A:
+    while stack and An[stack[-1]] < An[i]:
+        result[stack[-1]] = An[i]
+        stack.pop()
+
+    stack.append(i)
+    i+=1
+
+for i in result:
+    print(i, end = " ") 
+# answer = ""
+# for i in range(A):
+#     if i==A-1:
+#         answer += "-1"
+#         break
+#     for j in range(i+1,A):
+#         if(An[i]<An[j]):
+#             answer += f"{An[j]} "
+#             break
+#         if j==A-1 and (An[i]>=An[j]):
+#             answer += "-1 "
+# print(answer)
