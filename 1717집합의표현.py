@@ -1,16 +1,14 @@
+import sys
+input = sys.stdin.readline
+sys.setrecursionlimit(100000)
 
 n,m = map(int,input().split())
-parent = [0]*(n+1)
-
-for i in range(n+1):
-    parent[i] = i
+parent = [i for i in range(n+1)]
 
 def Union(a,b):
     a = Find(a)
     b = Find(b)
 
-    if a==b:
-        return
     if a>b:
         parent[a] = b
     else:
@@ -25,13 +23,13 @@ def Find(u):
 
 
 for _ in range(m):
-    z, x, y = map(int,input().split())
-    if not z:
-        Union(x,y)
-    
-    if z:
+    flag, x, y = map(int,input().split())
+
+    if flag:
         if Find(x) == Find(y):
             print("YES")
         else:
             print("NO")
+    else:
+        Union(x,y)
     
