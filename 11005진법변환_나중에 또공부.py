@@ -8,4 +8,5 @@ while N != 0:
     # N을 B로 나눈 몫이 N이 된다.
     N //= B
     
+    
 print(answer[::-1])
