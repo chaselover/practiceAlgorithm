@@ -34,3 +34,4 @@ if len(final_order) != N:
 
 for singer in final_order:
     print(singer)
+
