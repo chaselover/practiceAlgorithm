@@ -24,7 +24,7 @@ for _ in range(M):
     a,b=map(int,input().split())
     graph[a] += [b]
     level[b] += 1
-print(graph,level)
+    
 topological_sort()
 
 print(*answer)
