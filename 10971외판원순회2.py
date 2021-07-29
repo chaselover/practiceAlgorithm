@@ -15,16 +15,10 @@ def dfs(start, next, value, visited):
             dfs(start, i, value + travel[next][i], visited)
             visited.pop()
 
-
-if __name__ == "__main__":
-
-    N = int(input())
-    travel = [list(map(int, input().split())) for _ in range(N)]
-
-    min_value = sys.maxsize
-
-    # 각 번호에서 시작
-    for i in range(N):
-        dfs(i, i, 0, [i])
-
-    print(min_value)
+N = int(input())
+travel = [list(map(int, input().split())) for _ in range(N)]
+min_value = sys.maxsize
+# 각 번호에서 시작
+for i in range(N):
+    dfs(i, i, 0, [i])
+print(min_value)

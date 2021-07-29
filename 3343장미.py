@@ -3,6 +3,7 @@ input = sys.stdin.readline
 from collections import deque
 
 def buy_flower(optimal_cost):
+    global min_cost
     queue = deque()
     start_price = 0
     flower = 0
@@ -13,18 +14,19 @@ def buy_flower(optimal_cost):
             if cur_price + flo_cost <= optimal_cost:
                 queue.append([cur_price+flo_cost,flower+flo_cnt])
                 if flower+flo_cnt>=N:
+                    if cur_price + flo_cost < min_cost:
+                        min_cost = cur_price + flo_cost
                     return True
-
-
 
 N,A,B,C,D = map(int,input().split())
 
 start = 1
 end = int(1e18)
 answer = 0
+min_cost=0
 while start <= end:
     mid = (start+end)//2
-    if buy_flower(mid):
+    if buy_flower(mid) or min_cost<=mid :
         end = mid-1
         answer = mid
     else:
