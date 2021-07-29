@@ -1,18 +1,33 @@
 import sys
 input = sys.stdin.readline
+from collections import deque
+
+def buy_flower(optimal_cost):
+    queue = deque()
+    start_price = 0
+    flower = 0
+    queue.append([start_price,flower])
+    while queue:
+        cur_price,flower = queue.popleft()
+        for flo_cnt,flo_cost in ((A,B),(C,D)):
+            if cur_price + flo_cost <= optimal_cost:
+                queue.append([cur_price+flo_cost,flower+flo_cnt])
+                if flower+flo_cnt>=N:
+                    return True
+
+
 
 N,A,B,C,D = map(int,input().split())
-# 재고를 얼마나 가져갈꺼냐?
-# 노란장미 N개 꽃집2개 A개 B원 C개 D원 싸면 넘치게 사도됨.
-# 개당 가격이 2번꽃집이 비싸면 우선순위는 1꽃집.
-if B/A < D/C:
-    flag=1
-else:
-    flag=0
 
-# 재고 -> 개당가격B/A만큼 손해. 재고를 줄여서 이득이면 줄이는게 좋음.
-# 개당 가격 ->  A를 B로 대체하면? 개당 D/C-B/A만큼 손해.
-# 재고 1개 줄이면? (B/A-(D/C-B/A)*대체된 갯수)>0이면 이득.
-# C가 더 크다면 C뺄때마다 A*(C//A)만큼 A를 보충해 C-A*(C//A) 만큼 재고를 줄일 수 있음.
-# 즉 A가 가성비가 좋고 A가 C보다 더 크다면 ((B-A)(A-(C*(A//C))) - (D/C-B/A)(C*(A//C))) A를한단위 뺄때마다 이만큼 이득.
-# 그럼 A가 가성비가 좋고 C가 A보다 더 크다면?
+start = 1
+end = int(1e18)
+answer = 0
+while start <= end:
+    mid = (start+end)//2
+    if buy_flower(mid):
+        end = mid-1
+        answer = mid
+    else:
+        start = mid +1
+
+print(answer)
