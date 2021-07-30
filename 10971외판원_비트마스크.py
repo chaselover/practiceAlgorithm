@@ -1,10 +1,14 @@
 import sys 
 def find(now, before): 
     # 남아있는 경로를 이미 방문한 적이 있음 
-    if dp[now][before]: return dp[now][before] 
+    if dp[now][before]: 
+        return dp[now][before] 
     # # 모두 방문한 경우 
     if before == (1<<n) - 1: 
-        return path[now][0] if path[now][0] > 0 else sys.maxsize 
+        if path[now][0] > 0:
+            return path[now][0] 
+        else: 
+            return sys.maxsize 
     # # 현재 지점에서 이동할 수 있는 지점들을 탐색 
     cost = sys.maxsize 
     for i in range(1, n): 
