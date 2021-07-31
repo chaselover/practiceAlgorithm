@@ -11,6 +11,7 @@ else:
     # a~z중 antic뺀 나머지 chr들.을  index와 짝지어 딕셔너리 형태로 저장.(a:0,b:1....)숫자가 임의로 설정되어있음.
     alpha = {ky: v for v, ky in enumerate(
         (set(map(chr, range(ord('a'), ord('z')+1))) - nece_chars))}
+    print(alpha)
     cnt = 0
     # n번의 글자입력
     for _ in range(n):
