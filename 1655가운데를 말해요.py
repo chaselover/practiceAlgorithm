@@ -1,12 +1,14 @@
 import sys
+input = sys.stdin.readline
 import heapq
 
 
-n = int(sys.stdin.readline())
+
+n = int(input())
 max_h, min_h = [], []
 # max_h[0][1]값을 기준으로 큰 값은 min_h, 같거나 작은 값은 max_h에 삽입
 for _ in range(n):
-    num = int(sys.stdin.readline())
+    num = int(input())
     if len(max_h) == len(min_h):
         heapq.heappush(max_h, (-num, num))
     else:
@@ -19,3 +21,4 @@ for _ in range(n):
         heapq.heappush(min_h, (max_value, max_value))
         # 왼쪽 힙 첫 값만 읽어줌.
     print(max_h[0][1])
+

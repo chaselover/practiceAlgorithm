@@ -19,6 +19,8 @@ def bellman_ford(start):
     return False
 
 
+
+
 N,M = map(int,input().split())
 graph = {i:[] for i in range(1,N+1)}
 dp_dists = [float('inf') for _ in range(N+1)]
