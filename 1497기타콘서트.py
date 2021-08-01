@@ -31,7 +31,6 @@ for i in range(1,N+1):
         # 연산한 total에서 Y몇개인지 확인.
         cnt=0
         for j in range(M):
-            print(bin(total),(1<<j))
             if total&(1<<j):
                 cnt+=1
         # max값 최신화 시켜주고 i기록.(i는 오름차순으로 검사하기때문에 기타수는 최소값으로 들어감.)
