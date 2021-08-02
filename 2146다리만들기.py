@@ -14,6 +14,7 @@ def grouping(i, j): # 섬마다 번호 붙이기
                 elif world[x][y] == 0 and not (qi, qj) in ocean: 
                     ocean.append((qi, qj))
 
+
 def get_distance(): # 모든 섬에서 동시에 확장 
     loop = 0 
     ans = sys.maxsize 
