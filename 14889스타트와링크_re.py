@@ -11,8 +11,7 @@ def DFS(start,depth):
                     start += sinerge[i][j] + sinerge[j][i]
                 elif not visited[i] and not visited[j]:
                     link += sinerge[i][j] + sinerge[j][i]
-                ans = min(ans,abs(start-link))
-        return
+        ans = min(ans,abs(start-link))
     for i in range(start,N):
         if not visited[i]:
             visited[i] = True
