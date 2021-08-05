@@ -17,5 +17,10 @@ for k in range(n):
             if maps[i][j] > maps[i][k]+maps[k][j]:
                 maps[i][j] = maps[i][k]+maps[k][j]
 
+for i in range(n):
+    for j in range(n):
+        if maps[i][j]==float('inf'):
+            maps[i][j]=0
+
 for map in maps:
     print(*map)
