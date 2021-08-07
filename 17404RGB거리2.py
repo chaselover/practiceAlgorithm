@@ -1,6 +1,7 @@
 import sys
 input = sys.stdin.readline
 
+# 삘 초 파로 칠하는 모든 경우의 수를 계산.
 N = int(input())
 price = [list(map(int,input().split())) for _ in range(N)]
 dp = [[1001,1001,1001] for _ in range(N+1)]
