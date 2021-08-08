@@ -1,8 +1,6 @@
 import sys
 input = sys.stdin.readline
 
-
-
 def isPossible(target_time):
     balloon=0
     for staff in make_balloon:
@@ -25,5 +23,4 @@ while start<=end:
     else:
         start = mid+1
 
-
-print(answer)
+print(int(answer))
