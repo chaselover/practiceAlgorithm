@@ -40,6 +40,7 @@ def BFS(x,y,graph,start,key):
         return True
 
 
+
 def prim(graph,start,M):
     minWeight = [float('inf')] * (M+3)                           # 최초 가중치 전부 무한대로 key갯수+시작지점 (idx 2부터 시작했으므로 2칸 더 더해줌.)
     visited = [0] * (M+3)                                       
