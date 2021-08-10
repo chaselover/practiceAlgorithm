@@ -16,7 +16,7 @@ def solve():
             # 플로이드 워셜처럼 k를 끼고 최솟값이 있냐 없냐? 어느경로로 가는게 좋냐 최솟값 택해서 누적합 더해주기.
             # k는 결국 길이 범위인 i보다 작은 범위 즉 길이가 i면 부분 길이 k는 0부터 i-1까지.
             DP[j][j+i-1] = min([DP[j][j+k] + DP[j+k+1][j+i-1] for k in range(i-1)]) + (S[j+i-1] - S[j-1])
-
+ 
     print(DP[1][N])
 
 for _ in range(int(input())):
