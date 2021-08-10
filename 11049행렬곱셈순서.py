@@ -1,6 +1,7 @@
 import sys
 input = sys.stdin.readline
 
+
 N = int(input())
 matrix = [list(map(int, input().split())) for i in range(N)]
 # dp[i][j]는 i번재 행렬에서 j번째 행렬까지 곱한
