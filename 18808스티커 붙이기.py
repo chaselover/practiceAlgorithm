@@ -49,13 +49,3 @@ for i in range(N):
     sum_sticker += sum(notebook[i])
 print(sum_sticker)
 
-
-
-
-# print()
-# for i in range(R):
-#     print(*sticker[i])
-# print()
-# for i in range(N):
-#     print(*notebook[i])
-# print()
