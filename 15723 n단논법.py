@@ -1,13 +1,15 @@
 import sys
 input = sys.stdin.readline
 
+
 def DFS(cur_node, target):
     if cur_node==target:
         return True
     for next_node in graph[cur_node]:
         if not visited[next_node]:
             visited[next_node] = True
-            DFS(next_node, target)
+            if DFS(next_node, target):
+                return True
 
 
 n = int(input())
@@ -18,7 +20,6 @@ for _ in range(n):
     first_num = ord(first)-97
     end_num = ord(end)-97
     graph[first_num] += [end_num]
-print(graph)
 m = int(input())
 for _ in range(m):
     first, arrow, end = input().split()
