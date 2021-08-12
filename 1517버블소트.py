@@ -11,11 +11,11 @@ def merge_sort(start, end):
     mid = (start + end) // 2
     if size <= 1:
         return
- 
+
     # divide
     merge_sort(start, mid)
     merge_sort(mid, end)
- 
+
     # merge
     new_arr = []
     idx1, idx2 = start, mid
@@ -41,7 +41,7 @@ def merge_sort(start, end):
     # reflect
     for t in range(len(new_arr)):
         arr[start + t] = new_arr[t]
- 
+
 n = int(input())
 arr = list(map(int, input().split()))
 swap = 0
