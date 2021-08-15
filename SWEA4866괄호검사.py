@@ -18,17 +18,17 @@ def bracket_inspection(s):
         else:
             if check =='(':
                 if stack2[-1]==')':
-                    dic[stack2.pop()] -=1
+                    stack2.pop()
                 else:
                     return 0
             elif check=='{':
                 if stack2[-1]=='}':
-                    dic[stack2.pop()] -= 1
+                    stack2.pop() 
                 else:
                     return 0
             elif check=='[':
                 if stack2[-1]==']':
-                    dic[stack2.pop()] -= 1
+                    stack2.pop()
                 else:
                     return 0
         
