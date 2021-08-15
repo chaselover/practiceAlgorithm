@@ -2,18 +2,18 @@ import sys
 input = sys.stdin.readline
 
 L = int(input()) # 광고판 길이
-s = input().rstrip() # 광고판 문자열
-s_len = len(s)
+string = input().rstrip() # 광고판 문자열
+string_length = len(string)
 
 # 실패함수 ( KMP 패턴 부분 일치 테이블 만들기)
-p_table = [0 for _ in range(s_len)]
-j = 0
-for i in range(1, s_len):
-    while j > 0 and s[i]!=s[j]:
-        j = p_table[j-1]
-    if s[i]==s[j]:
-        j+=1
-        p_table[i] = j
+pattern_table = [0 for _ in range(string_length)]
+count = 0
+for idx in range(1, string_length):
+    while count > 0 and string[idx]!=string[count]:
+        count = pattern_table[count-1]
+    if string[idx]==string[count]:
+        count+=1
+        pattern_table[idx] = count
 
-p_len = s_len - p_table[s_len-1] # 가장짧은 광고길이
-print(p_len)
+pattern_length = string_length - pattern_table[string_length-1] # 가장짧은 광고길이
+print(pattern_length)
