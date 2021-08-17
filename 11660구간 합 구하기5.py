@@ -7,6 +7,8 @@ matrix = [list(map(int,input().split())) for _ in range(N)]
 dp = [[0]*N for _ in range(N)]
 
 
+
+
 for i in range(N):
     for j in range(N):
         dp[0][0] = matrix[0][0]
