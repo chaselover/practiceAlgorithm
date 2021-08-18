@@ -14,3 +14,4 @@ for n in range(2, int(max ** 0.5) + 1):
         i += 1
 print(sum(chk))
 
+
