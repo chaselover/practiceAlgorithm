@@ -3,6 +3,7 @@ from sys import stdin
 from heapq import heappush, heappop
 input = stdin.readline
 
+
 def out(x, y):
     return x < 0 or x >= n or y < 0 or y >= m
 

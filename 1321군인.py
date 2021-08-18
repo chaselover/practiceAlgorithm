@@ -1,6 +1,7 @@
 import sys
 input = sys.stdin.readline
  
+ 
 seg = [0 for _ in range(2020202)]
  
 def init(n,s,e):

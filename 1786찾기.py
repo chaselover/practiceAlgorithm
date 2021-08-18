@@ -1,6 +1,7 @@
 import sys
 input = sys.stdin.readline
 
+
 def MakeTable(P,KMPTable):
     j = 0
     for i in range(1,len(P)):

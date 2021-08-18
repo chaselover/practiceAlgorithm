@@ -3,6 +3,7 @@ input = sys.stdin.readline
 sys.setrecursionlimit(10 ** 9)
  
 
+
 #  병합 정렬을 사용 반으로 나눈 뒤 합치는 과정에서 오른쪽 배열에 오는 수가 들어갈때
 #  왼쪽 배열에 있는 수가 남아있다면 바꿔줘야 할 쌍의 수일 것이므로 남아있는 요소들의 수만큼 정답에 더해주면 된다.
 def merge_sort(start, end):

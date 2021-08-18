@@ -1,6 +1,7 @@
 import sys
 input=sys.stdin.readline
 
+
 n=int(input())
 graph=[]
 result=0
