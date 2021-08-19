@@ -2,7 +2,6 @@ import sys
 input = sys.stdin.readline
 
 N = int(input())
-
 prex_sum, left = 0, 0
 answer = 0
 
