@@ -13,6 +13,7 @@ def merge_sort(start, end):
     if size <= 1:
         return
 
+
     # divide
     merge_sort(start, mid)
     merge_sort(mid, end)

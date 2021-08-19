@@ -1,6 +1,7 @@
 import sys
 
 
+
 # fenwick_update : 펜윅 트리인 tree의 idx번째 노드를 d로 갱신하는 함수
 def fenwick_update(tree, idx, d):
     while idx <= n:
