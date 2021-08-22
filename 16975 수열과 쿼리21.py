@@ -2,6 +2,8 @@
 import sys
 from math import ceil,log2
 input=sys.stdin.readline
+
+
 def plus(start,end,left,right,node,diff):
     if right<start or left>end:
         return
