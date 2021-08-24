@@ -18,6 +18,7 @@ for right in range(N+1):
     while card_pack[cards[right]] > 1:
         card_pack[cards[left]] -= 1
         left += 1
+
 pack_cnt.sort(reverse=True)
 for i in range(max(pack_cnt),1,-1):
     max_cnt = 0
@@ -26,3 +27,5 @@ for i in range(max(pack_cnt),1,-1):
     if max_cnt >= M:
         print(i)
         exit()
+else:
+    print(1)
