@@ -12,4 +12,4 @@ for right in range(N):
         answer = max(answer, prefix_sum)
         prefix_sum -= arr[left]
         left += 1
-print(answer)
+print(answer) 
