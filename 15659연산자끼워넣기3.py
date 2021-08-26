@@ -1,36 +1,37 @@
 import sys
 input = sys.stdin.readline
 
-def dfs(exp: str, idx: int, used: list):
-    global n, a, add, sub, mul, div, maxV, minV
-    if idx == n:
-        maxV = max(maxV, eval(exp))
-        minV = min(minV, eval(exp))
+def dfs(expression, depth, use_cnt):
+    global max_result, min_result
+    if depth == N:
+        tmp = eval(expression)
+        max_result = max(max_result, tmp)
+        min_result = min(min_result, tmp)
         return
-    if used[0] < add:
-        used[0] += 1
-        dfs(exp + "+" + str(a[idx]), idx + 1, used)
-        used[0] -= 1
-    if used[1] < sub:
-        used[1] += 1
-        dfs(exp + "-" + str(a[idx]), idx + 1, used)
-        used[1] -= 1
+    if use_cnt[0] < p_cnt:
+        use_cnt[0] += 1
+        dfs(expression + "+" + str(nums[depth]), depth + 1, use_cnt)
+        use_cnt[0] -= 1
+    if use_cnt[1] < mi_cnt:
+        use_cnt[1] += 1
+        dfs(expression + "-" + str(nums[depth]), depth + 1, use_cnt)
+        use_cnt[1] -= 1
  
-    if used[2] < mul:
-        used[2] += 1
-        dfs(exp + "*" + str(a[idx]), idx + 1, used)
-        used[2] -= 1
+    if use_cnt[2] < mu_cnt:
+        use_cnt[2] += 1
+        dfs(expression + "*" + str(nums[depth]), depth + 1, use_cnt)
+        use_cnt[2] -= 1
  
-    if used[3] < div:
-        used[3] += 1
-        dfs(exp + "//" + str(a[idx]), idx + 1, used)
-        used[3] -= 1
+    if use_cnt[3] < d_cnt:
+        use_cnt[3] += 1
+        dfs(expression + "//" + str(nums[depth]), depth + 1, use_cnt)
+        use_cnt[3] -= 1
  
  
-n = int(input())
-a = list(map(int, input().split()))
-add, sub, mul, div = map(int, input().split())
-maxV, minV = -float('inf'), float('inf')
-dfs(str(a[0]), 1, [0, 0, 0, 0])
-print(maxV)
-print(minV)
+N = int(input())
+nums = list(map(int, input().split()))
+p_cnt, mi_cnt, mu_cnt, d_cnt = map(int, input().split())
+max_result, min_result = -float('inf'), float('inf')
+dfs(str(nums[0]), 1, [0, 0, 0, 0])
+print(max_result)
+print(min_result)
