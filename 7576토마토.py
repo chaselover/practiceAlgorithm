@@ -2,12 +2,6 @@ import sys
 input = sys.stdin.readline
 from collections import deque
 
-m, n = map(int, input().split())
-matrix = [list(map(int, input().split())) for _ in range(n)]
-queue = deque()
-dx = [1, -1, 0, 0]
-dy = [0, 0, -1, 1]
-
 
 def bfs():
     while queue:
@@ -19,6 +13,12 @@ def bfs():
                 matrix[x][y] = matrix[a][b] + 1
                 queue.append([x, y])
 
+
+m, n = map(int, input().split())
+matrix = [list(map(int, input().split())) for _ in range(n)]
+queue = deque()
+dx = [1, -1, 0, 0]
+dy = [0, 0, -1, 1]
 
 for i in range(n):
     for j in range(m):

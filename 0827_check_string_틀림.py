@@ -1,22 +1,27 @@
 def check(s):
-    
-    while not s=='a':
-        
-        if s[0]=='b' and s[-1]=='b':
-            a_cnt = 0
-            while s and s[0]=='b' and s[-1]=='b':
-                s = s[1:-1]
-                a_cnt += 1
-            if not s.count('a')==a_cnt:
-                return False
+    a_cnt = s.count('a')
+    while True:
+        if len(s) > 1:
+            if s[0]=='b' and s[-1]=='b':
+                delete_cnt = 0
+                while len(s) > 1 and s[0]=='b' and s[-1]=='b':
+                    s = s[1:-1]
+                    a_cnt += 1
+                if delete_cnt % a_cnt:
+                    return False
 
-        elif len(s) != 1 and (s[0]=='a' or s[-1]=='a'):
-            if s[0]=='a':
-                s = s[1:]
+            elif s[0]=='a' or s[-1]=='a':
+                if s[0]=='a':
+                    s = s[1:]
+                    a_cnt -= 1
+                else:
+                    s = s[:-1]
+                    a_cnt -= 1
+        else:
+            if s=='a':
+                return True
             else:
-                s = s[:-1]
-    return True
-
+                return False
 
 
 def solution(a):
@@ -27,4 +32,4 @@ def solution(a):
 
 
 
-print(solution(["a","abab","abbbbbbbabababbbabbbb","bbaa","bababa","bbbabababbbaa"]))
+print(solution(["bbbbabbbb","abab","abbbbbbbabababbbabbbb","bbaa","bababa","bbbabababbbaa"]))
