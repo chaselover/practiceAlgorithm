@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
 
     # 스레드 이진트리
-    class Node:
+class Node:
     def __init__(self, data):
         self.data = data
         self.left = None
@@ -121,7 +121,7 @@ if __name__ == "__main__":
     print('중위 순회 : ', end='') ; m_tree.inorderTraversal(m_tree.root)
 
     # 이진탐색트리
-    import random
+import random
 
 class Node:
     def __init__(self, data):
@@ -208,7 +208,7 @@ if __name__ == "__main__":
 
 
     # 힙구조
-    class Heap:
+class Heap:
     def __init__(self):
         self.array = []
 
