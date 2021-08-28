@@ -7,15 +7,12 @@ t = int(input())
 
 init_x = p + t
 init_y = q + t
-
-while not 0 <= init_x <= w or not 0 <= init_y <= h:
-    if init_x > w:
-        init_x = 2*w - init_x
-    elif init_x < 0:
-        init_x *= -1
-    elif init_y > h:
-        init_y = 2*h - init_y
-    elif init_y < 0:
-        init_y *= -1
-
-print(init_x,init_y)
+if not (init_x//w)&1:
+    x = (-2*w*((init_x//w)//2) + init_x)
+else:
+    x = 2*w - (-2*w*((init_x//w)//2) + init_x)
+if not (init_y//h)&1:
+    y = (-2*h*((init_y//h)//2) + init_y)
+else:
+    y = 2*h - (-2*h*((init_y//h)//2) + init_y)
+print(x,y)
