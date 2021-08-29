@@ -33,4 +33,10 @@ for i in range(M):
     if find(start) != find(end) and sex[start] != sex[end]:
         union(start,end)
         answer += dist
-print(answer)
+target = find(1)
+for i in range(2,N+1):
+    if target != find(i):
+        print(-1)
+        exit()
+else:
+    print(answer)
