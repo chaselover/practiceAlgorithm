@@ -1,32 +1,38 @@
-import sys
+def cal_team(lst):
+    sum_team = 0
+    for _i in range(len(lst)):
+        for _j in range(len(lst)):
+            if _i != _j:
+                i, j = lst[_i], lst[_j]
+                sum_team += board[i][j]
+    return sum_team
 
-input = sys.stdin.readline
+def comb(s, cnt, n):
+    global min_ans, visited
+    if cnt == n:
+        team1, team2 = [], []
+        for i in range(N):
+            if visited[i]:
+                team1.append(i)
+            else:
+                team2.append(i)
+        if len(team1) * len(team2) == 0:
+            return
+        sum_team1 = cal_team(team1)
+        sum_team2 = cal_team(team2)
+        min_ans = min(min_ans, abs(sum_team1 - sum_team2))
+        return
+    for i in range(s, N):
+        visited[i] = True
+        comb(i+1, cnt+1, n)
+        visited[i] = False
 
-def dfs(idx, cnt):
-    global ans
-    # 반 나눠지면 start, link팀 합 구해서 차이 절댓값의 최솟값 전역변수 ans에 최신화 시켜줌.
-    if cnt == n // 2:
-        start, link = 0, 0
-        for i in range(n-1):
-            for j in range(i+1,n):
-                if check[i] and check[j]:
-                    start += a[i][j] + a[j][i]
-                elif not check[i] and not check[j]:
-                    link += a[i][j] + a[j][i]
-        ans = min(ans, abs(start - link))
-# 그냥 check 가 1인거 반 0인거 반 나누기만함.
-    for i in range(idx, n):
-        if check[i]:
-            continue
-        check[i] = 1
-        dfs(i + 1, cnt + 1)
-        check[i] = 0
+N = int(input())
+board = [list(map(int, input().split())) for _ in range(N)]
+min_ans = 1e9
+team1, team2 = [], []
 
-
-n = int(input())
-a = [list(map(int, input().split())) for _ in range(n)]
-
-check = [0 for _ in range(n)]
-ans = sys.maxsize
-dfs(0, 0)
-print(ans)
+visited = [False] * N
+for i in range(1, N//2+1):
+    comb(0, 0, i)
+print(min_ans)
