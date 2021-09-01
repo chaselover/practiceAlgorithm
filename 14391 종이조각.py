@@ -45,4 +45,4 @@ arr = [list(map(int, input())) for _ in range(n)]
 maxAns = 0
 bitmask()
 print(maxAns)
-​
+
