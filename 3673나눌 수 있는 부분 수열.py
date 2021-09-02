@@ -11,6 +11,7 @@ for _ in range(int(input())):
         sum_n = (sum_n + num) % d
         visited[sum_n] += 1
     
+    # i가 나온 것들중 2개를 뽑는 조합의 수.
     result = 0
     for i in range(d):
         result += visited[i]*(visited[i]-1)//2
