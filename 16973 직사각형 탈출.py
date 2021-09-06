@@ -20,15 +20,21 @@ def move(x,y):
 
 def check(x,y):
     visited[x][y] = True
-    for i in range(x,x+H):
-        for j in range(y,y+W):
-            if board[i][j]:
-                return False
+    for i,j in walls:
+        if x<=i<x+H and y<=j<y+W:
+            return False
     return True
 
 
 N , M = map(int, input().split())
-board = [list(map(int, input().split())) for _ in range(N)]
+board = []
+walls = []
+for i in range(N):
+    row = list(map(int, input().split()))
+    for j in range(M):
+        if row[j]:
+            walls.append((i,j))
+    board.append(row)
 H, W, Sr, Sc, Fr, Fc = map(int, input().split())
 visited = [[0]*M for _ in range(N)]
 
