@@ -24,6 +24,7 @@ def dfs(u):
     ans %= MOD
 
     sum_v = 0
+    # (ab+ac+ad+bc+bd+cd) = ((a+b+c+d)^2-(a^2+b^2+c^2+d^2))/2 를 사용해 시간복잡도를 O(n^2)에서 O(n)으로 바꿈.
     for v in p:
         sum_v += ((dp[u] - v + MOD) % MOD * v) % MOD
         sum_v %= MOD
