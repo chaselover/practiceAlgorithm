@@ -31,6 +31,7 @@ def solution(board, aloc, bloc):
                 cnt += 1
                 flag_x = 1
                 flag_y = 0
+                if 
                 for i in range(4):
                     nbx = bx + dx[i]
                     nby = by + dy[i]
