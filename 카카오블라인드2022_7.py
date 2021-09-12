@@ -31,7 +31,6 @@ def solution(board, aloc, bloc):
                 cnt += 1
                 flag_x = 1
                 flag_y = 0
-                if 
                 for i in range(4):
                     nbx = bx + dx[i]
                     nby = by + dy[i]
@@ -43,8 +42,6 @@ def solution(board, aloc, bloc):
         if not flag_x or not flag_y:
             min_cnt = min(min_cnt,cnt)
     return min_cnt
-
-
 
 
 print(solution([[1, 1, 1, 1, 1]],[0, 0],[0, 4]))

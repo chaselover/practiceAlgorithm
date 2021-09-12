@@ -11,7 +11,7 @@ def magic(cnt, s,board):
                 if flag and board[i][j] <= 0:
                     cnt += 1
                 flag = 0
-    else:           
+    else:  
         for i in range(x1,x2+1):
             for j in range(y1,y2+1):
                 if board[i][j] <= 0:

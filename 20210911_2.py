@@ -1,3 +1,5 @@
+# 브루트 or 투포인터
+
 from collections import deque
 
 def check_issue(counter,n,k):
