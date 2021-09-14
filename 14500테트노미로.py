@@ -25,8 +25,6 @@ def dfs(x,y,depth,s,init_x,init_y):
                     max_sum = max(s+matrix[nx][ny]+matrix[init_x-1][init_y+1],max_sum)
 
     
-
-
 N, M = map(int, input().split())
 matrix = [list(map(int, input().split())) for _ in range(N)]
 visited = [[False]*M for _ in range(N)]

@@ -1,3 +1,5 @@
+import sys
+input = sys.stdin.readline
 
 def dfs(v):
     for i in range(n):
