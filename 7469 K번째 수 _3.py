@@ -85,7 +85,7 @@ if __name__ == '__main__':
             for portion in search(tree, tree_len, src, dst):
                 cnt += bisect_left(portion, middle)
 
-            # middle이 너무 큼
+            # middle 이 너무 큼
             if cnt >= nth_node:
                 max_val = middle
 
