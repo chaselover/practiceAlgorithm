@@ -6,7 +6,6 @@ from itertools import combinations
 def check(n):
     for string_set in combinations(strings, n):
         cnt = {chr(i): 0 for i in range(97,102)}
-        
         max_cnt = 0
         sum_count = 0
         for string in string_set:
