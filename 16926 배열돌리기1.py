@@ -28,11 +28,13 @@ def rotate(start):
     matrix[start][M-start-2] = right
 
 N, M, R = map(int,input().split())
+size = 2 * N + 2 * M - 4
 matrix = [list(map(int, input().split())) for _ in range(N)]
-short = N if N <= M else M 
-for _ in range(R):
-    for i in range(short//2):
-        rotate(i)
+short = N if N <= M else M
+
+for n_th in range(short//2):
+    for _ in range(R%(size-8*n_th)):
+        rotate(n_th)
 
 for row in matrix:
     print(*row)
