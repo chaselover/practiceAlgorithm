@@ -16,3 +16,4 @@ for test in range(int(input())):
     if a_y == b_y == f_y and a_x > f_x > b_x:
         answer += 2
     print(answer)
+    

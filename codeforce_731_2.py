@@ -5,7 +5,7 @@ for test in range(int(input())):
     s = input().rstrip()
     left = 0
     right = len(s) - 1
-    start = len(s) + ord('a') - 1
+    start = len(s) - 1  + ord('a')
     while left <= right:
         flag = 0
         if s[right] == chr(start):
