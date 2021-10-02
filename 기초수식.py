@@ -46,22 +46,3 @@ for i in range(len(n)):
         
 print(result[0][1] % 1000000)
 
-
-
-def mul(a, b):
-    x1 = (a[0]*b[0] + a[1]*b[2]) % 1000000
-    x2 = (a[0]*b[1] + a[1]*b[3]) % 1000000
-    x3 = (a[2]*b[0] + a[3]*b[2]) % 1000000
-    x4 = (a[2]*b[1] + a[3]*b[3]) % 1000000
-    return x1,x2,x3,x4
-
-def fib(n):
-    a, b = (1,0,0,1), (1,1,1,0)
-    while n > 0:
-        if n & 1:
-            a = mul(a, b)
-        b = mul(b, b)
-        n >>= 1
-    return a[2]
-
-print(fib(int(input())))
