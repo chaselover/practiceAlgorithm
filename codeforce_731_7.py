@@ -1,11 +1,13 @@
 import sys
 input = sys.stdin.readline
+sys.setrecursionlimit(10**5)
 
 
 # 1부터 탐색. cycle생기면 cycle에 포함되는 요소 하나 check.
 def dfs(cur_node, path):
-    if answer[cur_node] < 2:
-        answer[cur_node] += 1
+    if answer[cur_node] == 2:
+        return
+    answer[cur_node] += 1
     for next_node in graph[cur_node]:
         if path & (1 << next_node):
             cycle.append(next_node)
