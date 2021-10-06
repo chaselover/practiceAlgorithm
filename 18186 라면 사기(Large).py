@@ -1,7 +1,7 @@
 import sys
 input = sys.stdin.readline
 
-def three(idx):
+def buy_triple(idx):
     global cost
     k = min(arr[idx: idx + 3])
     arr[idx] -= k
@@ -10,7 +10,7 @@ def three(idx):
     cost += (B + 2 * C) * k
 
 
-def two(idx):
+def buy_double(idx):
     global cost
     k = min(arr[idx: idx + 2])
     arr[idx] -= k
@@ -18,7 +18,7 @@ def two(idx):
     cost += (B + C) * k
 
 
-def one(idx):
+def buy_each(idx):
     global cost
     cost += B * arr[idx]
 
@@ -34,9 +34,9 @@ for i in range(N):
         arr[i + 1] -= k
         cost += (B + C) * k
 
-        three(i)
+        buy_triple(i)
     else:
-        three(i)
-        two(i)
-    one(i)
+        buy_triple(i)
+        buy_double(i)
+    buy_each(i)
 print(cost)
