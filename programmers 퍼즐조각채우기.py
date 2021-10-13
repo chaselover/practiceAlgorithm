@@ -1,163 +1,49 @@
 import copy
 
-def dfs(graph, x, y, position, n, num):
-    dic = {0:[-1, 0], 1:[0, 1], 2:[1, 0], 3:[0, -1]}
-    
-    ret = [position]
-    
-    for i in range(4):
-        nx = x + dic[i][0]
-        ny = y + dic[i][1]
-        
-        if 0 <= nx < n and 0 <= ny < n and graph[nx][ny] == num:
-            graph[nx][ny] = 2
-            ret = ret + dfs(graph, nx, ny, [position[0]+dic[i][0], position[1]+dic[i][1]], n, num)
-    
-    return ret
-        
-def rotate(lst):
-    n = len(lst)
-    
-    ret = [[0]*n for _ in range(n)]
-    
-    for i in range(n):
-        for j in range(n):
-            ret[j][n-1-i] = lst[i][j]
-    
-    return ret
-
 def solution(game_board, table):
     answer = 0
-    game_board_copy = copy.deepcopy(game_board)
     
     n = len(game_board)
+    delta = ((0, 1), (1, 0), (-1, 0), (0, -1))
+
+    def dfs(graph, x, y, position, num):
+        ret = [position]
+        for dx, dy in delta:
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < n and 0 <= ny < n and graph[nx][ny] == num:
+                graph[nx][ny] = 2
+                ret += dfs(graph, nx, ny, [position[0] + dx, position[1] + dy], num)
+        return ret
+
+    # 빈칸 찾기
     block = []
-    
     for i in range(n):
         for j in range(n):
-            if game_board_copy[i][j] == 0:
-                game_board_copy[i][j] = 2
-                result = dfs(game_board_copy, i, j, [0, 0], n, 0)[1:]
+            if not game_board[i][j]:
+                game_board[i][j] = 1
+                result = dfs(game_board, i, j, [0, 0], n, 0)[1:]
                 block.append(result)
-    for r in range(4):
-        table = rotate(table)
-        table_rotate_copy = copy.deepcopy(table)
+
+    # 회전시켜 block 맞추기
+    for rotation in range(4):
+        rotated_table = [list(row)[::-1] for row in zip(*table)]
 
         for i in range(n):
             for j in range(n):
-                if table_rotate_copy[i][j] == 1:
-                    table_rotate_copy[i][j] = 2
-                    result = dfs(table_rotate_copy, i, j, [0, 0], n, 1)[1:]
+                if rotated_table[i][j] == 1:
+                    rotated_table[i][j] = 2
+                    result = dfs(rotated_table, i, j, [0, 0], n, 1)[1:]
                     if result in block:
                         block.pop(block.index(result))
                         answer += (len(result) + 1)
-                        
-                        table = copy.deepcopy(table_rotate_copy)
-                        
+                        table = copy.deepcopy(rotated_table)
                     else:
-                        table_rotate_copy = copy.deepcopy(table)
+                        rotated_table = copy.deepcopy(table)
     return answer
 
 
 
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
+# 2
 from collections import Counter
 from dataclasses import dataclass
 from itertools import product
@@ -334,74 +220,7 @@ def solution(game_board, block):
 
 
 
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
+# 3
 from collections import defaultdict
 
 block_hashs = [0] * 4
