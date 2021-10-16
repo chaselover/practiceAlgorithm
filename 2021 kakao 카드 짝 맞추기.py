@@ -1,4 +1,5 @@
-from collections import defaultdict, deque
+from collections import defaultdict
+from heapq import heappush, heappop
 from itertools import permutations
 
 
@@ -20,12 +21,12 @@ def solution(board, r, c):
             
 
     def make_count(target, x, y, visited):
-        q = deque()
-        q.append((x, y, 0))
+        q = []
+        heappush(q, (0, x, y))
         check = [[float('inf')] * 4 for _ in range(4)]
         check[x][y] = True
         while q:
-            x, y, dist = q.popleft()
+            dist, x, y = heappop(q)
             if (x, y) == target:
                 return dist + 1
             for dx, dy in delta:
@@ -33,11 +34,11 @@ def solution(board, r, c):
                 if 0 <= nx < 4 and 0 <= ny < 4:
                     if check[nx][ny] > dist + 1:
                         check[nx][ny] = dist + 1
-                        q.append((nx, ny, dist + 1))
+                        heappush(q, (dist + 1, nx, ny))
                 ctrl_x, ctrl_y = ctrl_move(x, y, dx, dy, visited)
                 if check[ctrl_x][ctrl_y] > dist + 1:
                     check[ctrl_x][ctrl_y] = dist + 1
-                    q.append((ctrl_x, ctrl_y, dist + 1))
+                    heappush(q, (dist + 1, ctrl_x, ctrl_y))
 
 
 
@@ -79,6 +80,3 @@ def solution(board, r, c):
         dfs(each_set, r, c, 0, 0, 0, visited)
 
     return min_cnt
-
-
-print(solution([[1,0,0,3],[2,0,0,0],[0,0,0,2],[3,0,1,0]], 1, 0))
