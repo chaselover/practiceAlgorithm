@@ -13,5 +13,3 @@ for test in range(int(input())):
         k = new_arr[num] 
         answer += k * (k - 1) // 2
     print(answer)
-
-     

@@ -32,4 +32,4 @@ for test in range(int(input())):
             answer += min_value
             min_value = float('inf')
     print(answer)
-    
+
