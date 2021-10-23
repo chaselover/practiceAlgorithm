@@ -1,8 +1,8 @@
 import sys
 import heapq
-
 from collections import defaultdict
 input = sys.stdin.readline
+
 class Algorithm():
     def __init__(self,num):
         self.num = num
@@ -279,4 +279,3 @@ for _ in range(m):
     elif command == "solved":
         pb_num = int(args[0])
         problem[pb_num] = [0, 0]
-        
