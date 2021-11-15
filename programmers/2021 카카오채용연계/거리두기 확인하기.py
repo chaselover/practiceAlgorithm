@@ -24,7 +24,6 @@ def is_check(place):
     return True
     
 
-
 def solution(places):
     answer = []
     for place in places:
