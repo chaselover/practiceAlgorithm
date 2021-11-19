@@ -1,3 +1,6 @@
+import sys
+read = sys.stdin.readline
+maxAns = -1
 def selectRegion(r, c):
     if r > 0 and c > 0:
         return 0
@@ -56,3 +59,28 @@ def cal(r, c):
     if ans > maxAns:
         maxAns = ans
     return ans
+ 
+r1, c1, r2, c2 = map(int, read().split())
+ 
+R = r2-r1+1
+C = c2-c1+1
+D = [[0 for _ in range(C)] for _ in range(R)]
+ 
+ 
+ 
+for i in range(R):
+    for j in range(C):
+        D[i][j] = str(cal(r1 + i, c1 + j))
+strLen = len(str(maxAns))
+ 
+ 
+for i in range(R):
+    for j in range(C):
+        temp = D[i][j]
+        D[i][j] = ' ' * (strLen - len(temp))
+        D[i][j] += temp
+ 
+for d in D:
+    for i in d:
+        print(i, end = ' ')
+    print()
