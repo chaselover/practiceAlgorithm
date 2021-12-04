@@ -4,13 +4,14 @@ input = sys.stdin.readline
 
 for test in range(int(input())):
     n = int(input())
-    if n & 1:
-        print("YES")
-        continue
-    answer = "NO"
-    while n > 2:
-        n //= 2
-        if n & 1:
-            answer = "YES"
+    arr = list(map(int, input().split()))
+    left, right = 0, n - 1
+    answer = []
+    while left <= right:
+        answer.append(arr[left])
+        if left == right:
             break
-    print(answer)
+        answer.append(arr[right])
+        left += 1
+        right -= 1
+    print(*answer)
