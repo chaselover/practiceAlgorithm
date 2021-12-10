@@ -1,56 +1,109 @@
 import sys
 input = sys.stdin.readline
 
-def move_block(points):
-    min_x, min_y = 6, 6
-    for x, y in points:
-        # 초록은 y좌표에 대한 x를 5행부터 0행까지 검사
+def move_block(t, x, y):
+    if t == 1:
         for row in range(6):
-            if not green_area[row][y]:
-                min_x = min(min_x, row)
+            if green_area[row][y]:
+                green_area[row - 1][y] = 1
                 break
-        # 파랑은 x좌표에 대한 y를 5부터 0까지 검사
+        else:
+            green_area[5][y] = 1
         for col in range(6):
-            if not blue_area[x][col]:
-                min_y = min(min_y, col)
+            if blue_area[x][col]:
+                blue_area[x][col - 1] = 1
                 break
-    for x, y in points:
-        green_area[min_x][y] = 1
-        blue_area[x][min_y] = 1
-
+        else:
+            blue_area[x][5] = 1
+    elif t == 2:
+        for row in range(6):
+            if green_area[row][y] or green_area[row][y + 1]:
+                green_area[row - 1][y], green_area[row - 1][y + 1] = 1, 1
+                break
+        else:
+            green_area[5][y], green_area[5][y + 1] = 1, 1
+        for col in range(6):
+            if blue_area[x][col]:
+                blue_area[x][col - 1], blue_area[x][col - 2] = 1, 1
+                break
+        else:
+            blue_area[x][5], blue_area[x][4] = 1, 1
+    else:
+        for row in range(6):
+            if green_area[row][y]:
+                green_area[row - 1][y], green_area[row - 2][y] = 1, 1
+                break
+        else:
+            green_area[5][y], green_area[4][y] = 1, 1
+        for col in range(6):
+            if blue_area[x][col] or blue_area[x + 1][col]:
+                blue_area[x][col - 1], blue_area[x + 1][col - 1] = 1, 1
+                break
+        else:
+            blue_area[x][5], blue_area[x + 1][5] = 1, 1
 
 
 def check_areas():
-    flag = 0
+    global answer
     # 녹색영역 검사
+    remove_line = []
     for i in range(5, -1, -1):
         if sum(green_area[i]) == 4:
-            
+            answer += 1
+            for j in range(4):
+                green_area[i][j] = 0
+            remove_line.append(i)
+
+    remove_line.reverse()
+    for line in remove_line:
+        for i in range(line, 0, -1):
+            for j in range(4):
+                green_area[i][j] = green_area[i - 1][j]
+
+    for i in range(4):
+        green_area[0][i] = 0
+    # 파란영역 검사
+    remove_line = []
+    for i in range(5, -1, -1):
         tmp = 0
         for j in range(4):
             if blue_area[j][i]:
                 tmp += 1
         if tmp == 4:
-            
-    # 파란영역 검사
-    if flag:
-        relocation()
-    pass
-
-
-def relocation():
-    pass
+            answer += 1
+            for j in range(4):
+                blue_area[j][i] = 0
+            remove_line.append(i)
+    remove_line.reverse()
+    for line in remove_line:
+        for i in range(line, 0, -1):
+            for j in range(4):
+                blue_area[j][i] = blue_area[j][i - 1]
+    for i in range(4):
+        blue_area[i][0] = 0
 
 
 def check_zeroarea():
-    flag = 0
-    if flag:
-        make_stable()
-    pass
-
-
-def make_stable():
-    pass
+    global green_area
+    green_zeros = 0
+    blue_zeros = 0
+    for i in range(2):
+        for j in range(4):
+            if green_area[i][j] == 1:
+                green_zeros += 1
+                break
+        for j in range(4):
+            if blue_area[j][i] == 1:
+                blue_zeros += 1
+                break
+    for _ in range(green_zeros):
+        green_area.pop()
+        green_area = [[0, 0, 0, 0]] + green_area
+    for _ in range(blue_zeros):
+        for i in range(4):
+            for j in range(5, 0, -1):
+                blue_area[i][j] = blue_area[i][j - 1]
+            blue_area[i][0] = 0
 
 
 N = int(input())
@@ -63,13 +116,18 @@ green_area = [[0] * 4 for _ in range(6)]
 answer = 0
 # 블록 놓기
 for t, x, y in blocks:
-    sites = []
-    sites.append((x, y))
-    if t == 2:
-        sites.append((x, y + 1))
-    else:
-        sites.append((x + 1, y))
-    move_block(sites)
+    move_block(t, x, y)
     check_areas()
     check_zeroarea()
+
+cnt = 0
+for i in range(4):
+    for j in range(6):
+        if blue_area[i][j]:
+            cnt += 1
+for i in range(6):
+    for j in range(4):
+        if green_area[i][j]:
+            cnt += 1
 print(answer)
+print(cnt)
