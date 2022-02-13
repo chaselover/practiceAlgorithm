@@ -5,10 +5,10 @@ from collections import defaultdict
 m, n = map(int, input().split())
 universe = defaultdict(int)
 for _ in range(m):
-    univ = list(map(int, input().split()))
-    su = sorted(list(set(univ)))
-    rnk = {su[i]: i for i in range(len(su))}
-    add = tuple([rnk[x] for x in univ])
+    planets = list(map(int, input().split()))
+    keys = sorted(list(set(planets)))
+    ranks = {keys[i]: i for i in range(len(keys))}
+    add = tuple([ranks[x] for x in planets])
     universe[add] += 1
 
 ans = 0
