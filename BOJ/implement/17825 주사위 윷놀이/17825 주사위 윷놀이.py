@@ -5,13 +5,13 @@ input = sys.stdin.readline
 def calculate():
     global result
     # 각 플레이어의 구간, 위치정보
-    player = [[0, 0] for _ in range(5)]
+    players = [[0, 0] for _ in range(5)]
     # 각 경우의 수에서 포인트의 합
     sum_points = 0
     # 1턴 부터 10턴까지 실행.
     for i in range(1, 11):
-        turn = turns[i]
-        section, pos = player[turn]
+        now = turns[i]
+        section, pos = players[now]
         if section == -1: 
             return
         else:
@@ -19,43 +19,43 @@ def calculate():
             # 0번 구역일때는 섹션이 옮겨지거나 도착하거나 이동하거나
             if section == 0:
                 if 20 < pos: 
-                    player[turn] = [-1, -1]
+                    players[now] = [-1, -1]
                 elif pos == 5: 
-                    player[turn] = [1, 0]
+                    players[now] = [1, 0]
                 elif pos == 10: 
-                    player[turn] = [3, 0]
+                    players[now] = [3, 0]
                 elif pos == 15: 
-                    player[turn] = [2, 0]
+                    players[now] = [2, 0]
                 else: 
-                    player[turn] = [section, pos]
+                    players[now] = [section, pos]
             # 1번 구역일 떄는 쭉 가서 8 이상 가면 도착.
             elif section == 1:
                 if pos >= 8: 
-                    player[turn] = [-1, -1]
+                    players[now] = [-1, -1]
                 # 4 이상이면 section 3 직진구간에서 칸수를 하나 빼줌.(가로구간은 사이 3칸, 세로구간은 2칸이기 때문에)
                 elif pos >= 4: 
-                    player[turn] = [3, pos - 1]
+                    players[now] = [3, pos - 1]
                 else: 
-                    player[turn] = [section, pos]
+                    players[now] = [section, pos]
             elif section == 2:
                 if pos >= 8: 
-                    player[turn] = [-1, -1]
+                    players[now] = [-1, -1]
                 elif pos >= 4: 
-                    player[turn] = [3, pos - 1]
+                    players[now] = [3, pos - 1]
                 else: 
-                    player[turn] = [section, pos]
+                    players[now] = [section, pos]
             elif section == 3:
                 if pos > 6: 
-                    player[turn] = [-1, -1]
+                    players[now] = [-1, -1]
                 else: 
-                    player[turn] = [section, pos]
+                    players[now] = [section, pos]
             # 이동된 칸이 이미 말이 있던 칸이면 올바르지 않은 경우이므로 연산중지. 아니면 point합산.
-            nx, ny = player[turn]
+            nx, ny = players[now]
             if nx != -1:
                 for k in range(1, 5):
-                    if turn == k: 
+                    if now == k: 
                         continue
-                    a, b = player[k]
+                    a, b = players[k]
                     if a == -1: 
                         continue
                     if idx[a][b] == idx[nx][ny]: 
@@ -70,7 +70,7 @@ def dfs(depth):
         return
     # 각 턴에 1 ~ 4 중 하나의 말이 움직임.
     for i in range(1, 5):
-        turns[depth] = i
+        turns[depth + 1] = i
         dfs(depth + 1)
 
 
