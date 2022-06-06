@@ -1,0 +1,30 @@
+def solution(bricks, n, k):
+    global answer
+    answer = float('inf')
+    # 조합, 좌우를 벽으로 쳤을 때 각 벽과 붙지 않는 것들만 채택.
+    # 물웅덩이 k 개면 총 k - 1개의 벽이 필요
+    walls = []
+    check = [False] * len(bricks)
+    check[0], check[len(bricks) - 1] = True, True
+    for idx, brick in enumerate(bricks):
+        if brick >= n:
+            check[idx] = True
+            walls.append(idx)
+    # 조합으로 k - 1 - wall_cnt만큼의 벽을 생성.
+    def dfs(now, walls, cnt):
+        global answer
+        if len(walls) == k - 1:
+            answer = min(answer, cnt)
+            return
+        for i in range(now, len(bricks) - 1):
+            if not check[i]:
+                s = []
+                for m in range(i - 1, i + 2):
+                    if not check[m]:
+                        check[m] = True
+                        s.append(m)
+                dfs(i, walls + [i], cnt + (n - bricks[i]))
+                for m in s:
+                    check[m] = False
+    dfs(1, walls, 0)
+    return answer

@@ -1,0 +1,8 @@
+def solution(n, text, second):
+    text = text.replace(" ", "_")
+    second %= n + len(text)
+    answer = "_" * n + text
+    return (answer[second:second + n] + answer[:second])[:n]
+
+
+print(solution(4, "hi bye", 7))

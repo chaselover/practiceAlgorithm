@@ -1,0 +1,52 @@
+def solution(n, rooks):
+    global answer
+    answer = 0
+    board = []
+    for i in range(n):
+        board.append([0] * (2 * i + 1))
+
+    def is_check(x, y):
+        if y & 1:
+            for row in range(x):
+                if 2 * row >= y and board[row][y]:
+                    return False
+                if 2 * row >= y - 1 and board[row][y - 1]:
+                    return False
+                tmp = 2 * (x - row)
+                if y >= tmp and board[row][y - tmp]:
+                    return False
+                if y >= tmp - 1 and board[row][y - tmp + 1]:
+                    return False
+            return True
+        else:
+            for row in range(x):
+                if 2 * row >= y and board[row][y]:
+                    return False
+                if 2 * row >= y + 1 and board[row][y + 1]:
+                    return False
+                tmp = 2 * (x - row)
+                if y >= tmp and board[row][y - tmp]:
+                    return False
+                if y >= tmp + 1 and board[row][y - tmp - 1]:
+                    return False
+            return True
+
+    def dfs(row, cnt):
+        global answer
+        if cnt == rooks:
+            answer += 1
+            return
+        if row == n:
+            return
+
+        for col in range(len(board[row])):
+            if is_check(row, col):
+                board[row][col] = 1
+                dfs(row + 1, cnt + 1)
+                board[row][col] = 0
+        dfs(row + 1, cnt)
+
+    dfs(0, 0)
+    return answer
+
+print(solution(5, 3))

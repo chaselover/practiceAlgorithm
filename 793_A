@@ -1,0 +1,12 @@
+import sys
+input = sys.stdin.readline
+
+for _ in range(int(input())):
+    n = int(input())
+    s = input().rstrip()
+    answer = 0
+    for i in range(n):
+        n_s = s[:i] + s[i + 1:]
+        if n_s == n_s[::-1]:
+            answer += 1
+    print(answer)
