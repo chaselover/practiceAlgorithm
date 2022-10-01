@@ -31,7 +31,7 @@ def solution(n, m, x, y, r, c, k):
                         if y == 0:
                             answer = answer[:1] + 'lr' * (k // 2) + answer[1:]
                     else:
-                        answer = answer[:idx] + 'du' * (k // 2) + answer[idx:]
+                        answer = 'du' * (k // 2) + answer[idx:]
                 
             
         
